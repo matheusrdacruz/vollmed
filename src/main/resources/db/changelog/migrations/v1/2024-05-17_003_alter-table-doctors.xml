@@ -10,7 +10,7 @@
         http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
     <changeSet author="matheuscruz" id="01">
         <addColumn schemaName= "public" tableName="tb_doctors">
-            <column name="phone_number" type="varchar(20)">
+            <column name="phone" type="varchar(20)" defaultValue="000">
                 <constraints nullable="false"/>
             </column>
         </addColumn>

@@ -1,3 +1,8 @@
+server:
+  port: 9393
+  error:
+    include-stacktrace: always
+
 spring:
   application:
     name: api-vollmed
@@ -10,7 +15,7 @@ spring:
     password: vollmed
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: validate
     show-sql: true
     properties:
       hibernate:

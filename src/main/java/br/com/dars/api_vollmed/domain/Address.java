@@ -1,12 +1,9 @@
 package br.com.dars.api_vollmed.domain;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -20,20 +17,17 @@ import lombok.Setter;
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 @Entity
-@Table(name = "tb_doctors")
-public class Doctor {
+@Table(name = "tb_addresses")
+public class Address {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String name;
-    private String email;
-    private String phone;
-    private String crm;
-    private boolean active = true;
-    @Enumerated(EnumType.STRING)
-    private Specialty specialty;
-    @OneToOne
-    private Address address;
-
+    private String city;
+    private String street;
+    private Integer number;
+    private String neighborhood;
+    private String state;
+    private String zipcode;
+    private String complement;
 }

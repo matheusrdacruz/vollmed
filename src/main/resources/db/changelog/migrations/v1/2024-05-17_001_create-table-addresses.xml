@@ -16,13 +16,11 @@
             <column name="street" type="varchar(80)">
                 <constraints nullable="false" />
             </column>
-            <column name="number" type="integer">
-                <constraints nullable="false" />
-            </column>
+            <column name="number" type="integer"/>
             <column name="neighborhood" type="varchar(80)">
                 <constraints nullable="false" />
             </column>
-            <column name="postal_code" type="varchar(80)">
+            <column name="zipcode" type="varchar(80)">
                 <constraints nullable="false" />
             </column>
             <column name="state" type="varchar(80)">
@@ -31,9 +29,7 @@
             <column name="city" type="varchar(80)" >
                 <constraints nullable="false" />
             </column>
-            <column name="complement" type="varchar(100)" >
-                <constraints nullable="false" />
-            </column>
+            <column name="complement" type="varchar(100)" />
             <!--<column defaultValueComputed="CURRENT_TIMESTAMP" name="created_at" type="timestamp"/>
             <column defaultValueComputed="CURRENT_TIMESTAMP" name="updated_at" type="timestamp"/>-->
         </createTable>
