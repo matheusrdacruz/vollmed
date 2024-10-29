@@ -57,7 +57,6 @@ public class DoctorService {
         Doctor doctor = this.findDoctorById(id);
         doctor.setActive(false);
         this.doctorRepository.save(doctor);
-        //this.doctorRepository.deleteById(id);
     }
 
     public DoctorView findById(Long id) {
@@ -66,7 +65,6 @@ public class DoctorService {
     }
 
     private Doctor findDoctorById(Long id) {
-        return this.doctorRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Doctor not found."));
+        return this.doctorRepository.getReferenceById(id);
     }
 }

@@ -1,7 +1,7 @@
 server:
   port: 9393
   error:
-    include-stacktrace: always
+    include-stacktrace: never
 
 spring:
   application:

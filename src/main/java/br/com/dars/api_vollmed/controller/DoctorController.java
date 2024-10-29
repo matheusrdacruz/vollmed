@@ -7,6 +7,7 @@ import br.com.dars.api_vollmed.service.DoctorService;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("/doctors")
@@ -27,28 +29,30 @@ public class DoctorController {
     }
 
     @GetMapping
-    public Page<DoctorView> listAll(Pageable pageable) {
-        return this.doctorService.listAll(pageable);
+    public ResponseEntity<Page<DoctorView>> listAll(Pageable pageable) {
+        return ResponseEntity.ok(this.doctorService.listAll(pageable));
     }
 
     @GetMapping("/{id}")
-    public DoctorView findById(@PathVariable Long id) {
-        return this.doctorService.findById(id);
+    public ResponseEntity<DoctorView> findById(@PathVariable Long id) {
+        return ResponseEntity.ok(this.doctorService.findById(id));
     }
 
     @PostMapping
-    public DoctorView create(@RequestBody @Valid DoctorForm doctor) {
-        return this.doctorService.create(doctor);
+    public ResponseEntity<DoctorView> create(@RequestBody @Valid DoctorForm doctor, UriComponentsBuilder uriBuilder) {
+        var newDoctor = this.doctorService.create(doctor);
+        var uri = uriBuilder.path("/doctors/{id}").buildAndExpand(newDoctor.id()).toUri();
+        return ResponseEntity.created(uri).body(newDoctor);
     }
 
     @PutMapping
-    public DoctorView update(@RequestBody @Valid DoctorFormUpdate doctor) {
-        return this.doctorService.update(doctor);
+    public ResponseEntity<DoctorView> update(@RequestBody @Valid DoctorFormUpdate doctor) {
+        return ResponseEntity.ok(this.doctorService.update(doctor));
     }
 
     @DeleteMapping("/{id}")
-    public String delete(@PathVariable Long id) {
+    public ResponseEntity delete(@PathVariable Long id) {
         this.doctorService.delete(id);
-        return "Doctor deleted";
+        return ResponseEntity.noContent().build();
     }
 }
